@@ -1,8 +1,5 @@
 package io.oasp.gastronomy.restaurant.general.logic.base;
 
-import io.oasp.gastronomy.restaurant.general.common.base.AbstractBeanMapperSupport;
-import io.oasp.module.jpa.common.api.to.PaginatedListTo;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,6 +10,9 @@ import net.sf.mmm.util.entity.api.GenericEntity;
 import net.sf.mmm.util.entity.api.PersistenceEntity;
 import net.sf.mmm.util.transferobject.api.AbstractTransferObject;
 import net.sf.mmm.util.transferobject.api.TransferObject;
+
+import io.oasp.gastronomy.restaurant.general.common.base.AbstractBeanMapperSupport;
+import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 
 /**
  * Abstract base class for any <em>use case</em> in this application. Actual implementations need to be annotated with

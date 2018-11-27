@@ -1,9 +1,9 @@
 package io.oasp.gastronomy.restaurant.salesmanagement.logic.api.usecase;
 
+import java.util.List;
+
 import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.OrderPositionEto;
 import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.OrderPositionSearchCriteriaTo;
-
-import java.util.List;
 
 /**
  * Interface of {@link io.oasp.gastronomy.restaurant.general.logic.base.AbstractUc use case} to get or find specific

@@ -1,9 +1,5 @@
 package io.oasp.gastronomy.restaurant.general.service.impl.rest;
 
-import io.oasp.gastronomy.restaurant.general.common.api.exception.NoActiveUserException;
-import io.oasp.gastronomy.restaurant.general.common.api.security.UserData;
-import io.oasp.gastronomy.restaurant.general.common.api.to.UserDetailsClientTo;
-
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,6 +16,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
+
+import io.oasp.gastronomy.restaurant.general.common.api.exception.NoActiveUserException;
+import io.oasp.gastronomy.restaurant.general.common.api.security.UserData;
+import io.oasp.gastronomy.restaurant.general.common.api.to.UserDetailsClientTo;
 
 /**
  * The security REST service provides access to the csrf token, the authenticated user's meta-data. Furthermore, it

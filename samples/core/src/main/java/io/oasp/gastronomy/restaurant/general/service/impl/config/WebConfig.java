@@ -13,11 +13,6 @@ import io.oasp.module.logging.common.api.DiagnosticContextFacade;
 import io.oasp.module.logging.common.impl.DiagnosticContextFacadeImpl;
 import io.oasp.module.logging.common.impl.DiagnosticContextFilter;
 import io.oasp.module.logging.common.impl.PerformanceLogFilter;
-
-import io.oasp.module.logging.common.api.DiagnosticContextFacade;
-import io.oasp.module.logging.common.impl.DiagnosticContextFacadeImpl;
-import io.oasp.module.logging.common.impl.DiagnosticContextFilter;
-import io.oasp.module.logging.common.impl.PerformanceLogFilter;
 import io.oasp.module.service.common.api.constants.ServiceConstants;
 
 /**

@@ -1,11 +1,11 @@
 package io.oasp.gastronomy.restaurant.salesmanagement.batch.impl.billexport.processor;
 
-import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.Salesmanagement;
-import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.BillCto;
-
 import javax.inject.Inject;
 
 import org.springframework.batch.item.ItemProcessor;
+
+import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.Salesmanagement;
+import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.BillCto;
 
 /**
  * Implementation of ItemProcessor. It finds BillCto by id and returns it.

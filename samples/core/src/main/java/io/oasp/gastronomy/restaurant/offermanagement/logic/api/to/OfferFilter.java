@@ -1,9 +1,9 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.api.to;
 
+import net.sf.mmm.util.transferobject.api.AbstractTransferObject;
+
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.module.basic.common.api.to.AbstractTo;
-
-import net.sf.mmm.util.transferobject.api.AbstractTransferObject;
 
 /**
  * {@link AbstractTransferObject TO} to filter {@link io.oasp.gastronomy.restaurant.offermanagement.common.api.Offer}s.

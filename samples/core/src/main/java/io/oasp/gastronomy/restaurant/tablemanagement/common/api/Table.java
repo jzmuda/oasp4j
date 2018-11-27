@@ -1,10 +1,10 @@
 package io.oasp.gastronomy.restaurant.tablemanagement.common.api;
 
-import io.oasp.gastronomy.restaurant.general.common.api.ApplicationEntity;
-import io.oasp.gastronomy.restaurant.tablemanagement.common.api.datatype.TableState;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import io.oasp.gastronomy.restaurant.general.common.api.ApplicationEntity;
+import io.oasp.gastronomy.restaurant.tablemanagement.common.api.datatype.TableState;
 
 /**
  * This is the interface for a table of the restaurant. It has a unique {@link #getNumber() number} can be

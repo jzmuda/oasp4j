@@ -1,9 +1,9 @@
 package io.oasp.gastronomy.restaurant.salesmanagement.service.api.websocket;
 
-import io.oasp.gastronomy.restaurant.salesmanagement.common.api.datatype.OrderPositionState;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.oasp.gastronomy.restaurant.salesmanagement.common.api.datatype.OrderPositionState;
 
 public class PositionStatusChangeTo {
   private Long id;

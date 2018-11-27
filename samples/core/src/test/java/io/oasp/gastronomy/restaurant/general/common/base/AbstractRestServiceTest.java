@@ -10,7 +10,6 @@ import io.oasp.gastronomy.restaurant.SpringBootApp;
 import io.oasp.gastronomy.restaurant.general.common.DbTestHelper;
 import io.oasp.gastronomy.restaurant.general.common.SecurityTestHelper;
 import io.oasp.gastronomy.restaurant.general.service.impl.config.RestaurantTestConfig;
-import io.oasp.module.basic.common.api.config.SpringProfileConstants;
 import io.oasp.module.test.common.base.SubsystemTest;
 
 /**

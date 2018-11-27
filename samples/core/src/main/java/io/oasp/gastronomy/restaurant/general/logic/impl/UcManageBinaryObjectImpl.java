@@ -1,15 +1,15 @@
 package io.oasp.gastronomy.restaurant.general.logic.impl;
 
+import java.sql.Blob;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import io.oasp.gastronomy.restaurant.general.dataaccess.api.BinaryObjectEntity;
 import io.oasp.gastronomy.restaurant.general.dataaccess.api.dao.BinaryObjectDao;
 import io.oasp.gastronomy.restaurant.general.logic.api.to.BinaryObjectEto;
 import io.oasp.gastronomy.restaurant.general.logic.base.AbstractUc;
 import io.oasp.gastronomy.restaurant.general.logic.base.UcManageBinaryObject;
-
-import java.sql.Blob;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  * Implementation of the {@link UcManageBinaryObject} intreface.

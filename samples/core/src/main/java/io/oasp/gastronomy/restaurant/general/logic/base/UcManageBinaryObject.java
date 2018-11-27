@@ -1,8 +1,8 @@
 package io.oasp.gastronomy.restaurant.general.logic.base;
 
-import io.oasp.gastronomy.restaurant.general.logic.api.to.BinaryObjectEto;
-
 import java.sql.Blob;
+
+import io.oasp.gastronomy.restaurant.general.logic.api.to.BinaryObjectEto;
 
 /**
  * Use case for managing BinaryObject.

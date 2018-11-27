@@ -1,5 +1,7 @@
 package io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao;
 
+import java.util.List;
+
 import io.oasp.gastronomy.restaurant.general.dataaccess.api.dao.ApplicationRevisionedDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.ProductEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
@@ -7,8 +9,6 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchC
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 import io.oasp.module.jpa.dataaccess.api.MasterDataDao;
-
-import java.util.List;
 
 /**
  * {@link ApplicationRevisionedDao Data Access Object} for {@link ProductEntity} entity.

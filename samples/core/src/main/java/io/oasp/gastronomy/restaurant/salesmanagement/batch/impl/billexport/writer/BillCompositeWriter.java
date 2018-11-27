@@ -1,9 +1,6 @@
 package io.oasp.gastronomy.restaurant.salesmanagement.batch.impl.billexport.writer;
 
 import static com.google.common.collect.Lists.newArrayList;
-import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.BillCto;
-import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.BillEto;
-import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.OrderPositionEto;
 
 import java.util.List;
 
@@ -15,6 +12,10 @@ import org.springframework.batch.item.file.ResourceAwareItemWriterItemStream;
 import org.springframework.batch.item.file.transform.LineAggregator;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
+
+import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.BillCto;
+import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.BillEto;
+import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.OrderPositionEto;
 
 /**
  * Implementation of ItemWriter. It gets BillCto and writes it in csv format into file.

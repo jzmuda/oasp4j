@@ -1,11 +1,11 @@
 package io.oasp.gastronomy.restaurant.general.dataaccess.base;
 
-import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
-
 import java.math.BigDecimal;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
+
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 
 /**
  * This is the {@link AttributeConverter} to allow that JPA vendors can persist instances of {@link Money} if used in

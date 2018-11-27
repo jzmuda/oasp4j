@@ -1,13 +1,13 @@
 package io.oasp.gastronomy.restaurant.general.service.impl.rest;
 
-import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 
 /**
  * The {@link JsonDeserializer JSON deserializer} for {@link Money}.

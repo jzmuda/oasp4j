@@ -1,10 +1,10 @@
 package io.oasp.gastronomy.restaurant.salesmanagement.logic.api.usecase;
 
-import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.OrderCto;
-import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.OrderEto;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
+import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.OrderCto;
+import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.OrderEto;
 
 /**
  * Interface of UcMangeOrder to centralize documentation and signatures of methods.

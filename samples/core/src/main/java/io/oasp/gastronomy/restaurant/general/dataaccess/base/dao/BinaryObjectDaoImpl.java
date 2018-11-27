@@ -1,9 +1,9 @@
 package io.oasp.gastronomy.restaurant.general.dataaccess.base.dao;
 
+import javax.inject.Named;
+
 import io.oasp.gastronomy.restaurant.general.dataaccess.api.BinaryObjectEntity;
 import io.oasp.gastronomy.restaurant.general.dataaccess.api.dao.BinaryObjectDao;
-
-import javax.inject.Named;
 
 /**
  * Implementation of {@link BinaryObjectDao}.

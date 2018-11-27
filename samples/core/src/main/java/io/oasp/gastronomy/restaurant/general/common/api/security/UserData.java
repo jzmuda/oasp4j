@@ -1,8 +1,5 @@
 package io.oasp.gastronomy.restaurant.general.common.api.security;
 
-import io.oasp.gastronomy.restaurant.general.common.api.UserProfile;
-import io.oasp.gastronomy.restaurant.general.common.api.to.UserDetailsClientTo;
-
 import java.security.Principal;
 import java.util.Collection;
 
@@ -10,6 +7,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+
+import io.oasp.gastronomy.restaurant.general.common.api.UserProfile;
+import io.oasp.gastronomy.restaurant.general.common.api.to.UserDetailsClientTo;
 
 /**
  * Container class for the profile of a user.

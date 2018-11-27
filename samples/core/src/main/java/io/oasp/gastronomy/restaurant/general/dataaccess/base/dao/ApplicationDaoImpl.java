@@ -1,10 +1,10 @@
 package io.oasp.gastronomy.restaurant.general.dataaccess.base.dao;
 
+import org.springframework.stereotype.Repository;
+
 import io.oasp.gastronomy.restaurant.general.dataaccess.api.dao.ApplicationDao;
 import io.oasp.module.jpa.dataaccess.api.MutablePersistenceEntity;
 import io.oasp.module.jpa.dataaccess.base.AbstractRevisionedDao;
-
-import org.springframework.stereotype.Repository;
 
 /**
  * This is the abstract base implementation of {@link ApplicationDao}.

@@ -1,9 +1,9 @@
 package io.oasp.gastronomy.restaurant.salesmanagement.logic.impl.paymentadapter;
 
+import java.io.Serializable;
+
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.salesmanagement.logic.api.to.PaymentData;
-
-import java.io.Serializable;
 
 /**
  * This class acts as a simple POJO. The creditor acts as the receiver of the transfered total amount. The total amount

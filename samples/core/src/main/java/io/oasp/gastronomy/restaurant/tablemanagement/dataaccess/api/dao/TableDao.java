@@ -1,12 +1,12 @@
 package io.oasp.gastronomy.restaurant.tablemanagement.dataaccess.api.dao;
 
+import java.util.List;
+
 import io.oasp.gastronomy.restaurant.general.dataaccess.api.dao.ApplicationDao;
 import io.oasp.gastronomy.restaurant.tablemanagement.dataaccess.api.TableEntity;
 import io.oasp.gastronomy.restaurant.tablemanagement.logic.api.to.TableSearchCriteriaTo;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 import io.oasp.module.jpa.dataaccess.api.MasterDataDao;
-
-import java.util.List;
 
 /**
  * {@link ApplicationDao Data Access Object} for {@link TableEntity} entity.

@@ -1,13 +1,13 @@
 package io.oasp.gastronomy.restaurant.general.common;
 
-import io.oasp.gastronomy.restaurant.general.common.api.MoneyHelper;
-import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
-import io.oasp.module.test.common.base.ModuleTest;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
+
+import io.oasp.gastronomy.restaurant.general.common.api.MoneyHelper;
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
+import io.oasp.module.test.common.base.ModuleTest;
 
 /**
  * This class tests the {@link MoneyHelper}. Especially summing a List of @Link {@link Money}s.

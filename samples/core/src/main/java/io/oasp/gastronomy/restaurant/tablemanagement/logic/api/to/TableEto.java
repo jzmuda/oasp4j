@@ -1,10 +1,10 @@
 package io.oasp.gastronomy.restaurant.tablemanagement.logic.api.to;
 
+import javax.validation.constraints.Max;
+
 import io.oasp.gastronomy.restaurant.tablemanagement.common.api.Table;
 import io.oasp.gastronomy.restaurant.tablemanagement.common.api.datatype.TableState;
 import io.oasp.module.basic.common.api.to.AbstractEto;
-
-import javax.validation.constraints.Max;
 
 /**
  * {@link AbstractEto ETO} for {@link Table}.

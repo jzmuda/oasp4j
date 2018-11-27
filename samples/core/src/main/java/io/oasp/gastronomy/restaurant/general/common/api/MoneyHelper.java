@@ -1,9 +1,9 @@
 package io.oasp.gastronomy.restaurant.general.common.api;
 
-import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
-
 import java.math.BigDecimal;
 import java.util.List;
+
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 
 /**
  * This class is a little helper to deal with {@link Money}. It provides convenience methods to get a {@link Money}.
