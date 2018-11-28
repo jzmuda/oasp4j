@@ -60,7 +60,7 @@ public class WeeklyPeriodEmbeddable implements IWeeklyPeriod {
   @Override
   public void setStartingHour(int hour) {
 
-    this.endingHour = hour;
+    this.startingHour = hour;
   }
 
   @Max(24)
@@ -74,6 +74,6 @@ public class WeeklyPeriodEmbeddable implements IWeeklyPeriod {
   @Override
   public void setEndingHour(int hour) {
 
-    this.startingHour = hour;
+    this.endingHour = hour;
   }
 }

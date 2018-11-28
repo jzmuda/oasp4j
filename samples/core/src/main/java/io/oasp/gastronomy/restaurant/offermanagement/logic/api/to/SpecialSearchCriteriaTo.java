@@ -1,6 +1,6 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.api.to;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import io.oasp.module.jpa.common.api.to.SearchCriteriaTo;
 
@@ -25,7 +25,7 @@ public class SpecialSearchCriteriaTo extends SearchCriteriaTo {
 
   private Long offerId;
 
-  private Date date;
+  private LocalDateTime date;
 
   /**
    * @return name
@@ -62,7 +62,7 @@ public class SpecialSearchCriteriaTo extends SearchCriteriaTo {
   /**
    * @return date
    */
-  public Date getDate() {
+  public LocalDateTime getDate() {
 
     return this.date;
   }
@@ -70,7 +70,7 @@ public class SpecialSearchCriteriaTo extends SearchCriteriaTo {
   /**
    * @param date new value of {@link #getdate}.
    */
-  public void setDate(Date date) {
+  public void setDate(LocalDateTime date) {
 
     this.date = date;
   }
