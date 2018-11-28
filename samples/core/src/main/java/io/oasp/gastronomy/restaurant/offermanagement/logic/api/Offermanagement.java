@@ -18,6 +18,8 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 
 /**
@@ -219,5 +221,11 @@ public interface Offermanagement {
    * @param productId is the ID of the {@link ProductEto} to delte the picture
    */
   void deleteProductPicture(Long productId);
+
+  SpecialEto saveSpecial(@Valid SpecialEto specialEto);
+
+  void deleteSpecial(Long id);
+
+  List<SpecialEto> getSpecials(SpecialSearchCriteriaTo searchCriteria);
 
 }

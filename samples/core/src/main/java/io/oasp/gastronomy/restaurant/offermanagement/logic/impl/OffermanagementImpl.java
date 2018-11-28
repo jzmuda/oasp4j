@@ -26,11 +26,13 @@ import io.oasp.gastronomy.restaurant.offermanagement.common.api.datatype.Product
 import io.oasp.gastronomy.restaurant.offermanagement.common.api.exception.OfferEmptyException;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.ProductEntity;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.DrinkDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.MealDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.OfferDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.ProductDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.SideDishDao;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.SpecialDao;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.Offermanagement;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.DrinkEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.MealEto;
@@ -44,6 +46,8 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 
 /**
@@ -70,6 +74,8 @@ public class OffermanagementImpl extends AbstractComponentFacade implements Offe
 
   /** @see #setSideDishDao(SideDishDao) */
   private SideDishDao sideDishDao;
+
+  private SpecialDao specialDao;
 
   /** **/
   private UcManageBinaryObject ucManageBinaryObject;
@@ -497,6 +503,35 @@ public class OffermanagementImpl extends AbstractComponentFacade implements Offe
   public void setSideDishDao(SideDishDao sideDishDao) {
 
     this.sideDishDao = sideDishDao;
+  }
+
+  /**
+   * @param specialDao the {@link SpecialDao} to {@link Inject}.
+   */
+  @Inject
+  public void setSpecialDao(SpecialDao specialDao) {
+
+    this.specialDao = specialDao;
+  }
+
+  @Override
+  public SpecialEto saveSpecial(SpecialEto specialEto) {
+
+    Objects.requireNonNull(specialEto, "special");
+    SpecialEntity special = this.specialDao.save(getBeanMapper().map(specialEto, SpecialEntity.class));
+    return getBeanMapper().map(special, SpecialEto.class);
+  }
+
+  @Override
+  public void deleteSpecial(Long id) {
+
+    this.specialDao.delete(id);
+  }
+
+  @Override
+  public List<SpecialEto> getSpecials(SpecialSearchCriteriaTo searchCriteria) {
+
+    return getBeanMapper().mapList(this.specialDao.findSpecials(searchCriteria), SpecialEto.class);
   }
 
 }
