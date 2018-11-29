@@ -42,6 +42,7 @@ public abstract class AbstractComponentFacade extends AbstractGenericEntityUtils
    * @param klass is the target class to map the paginated entities to.
    * @return a {@link PaginatedListTo paginated list of entity transfer objects}.
    */
+  @Override
   protected <T extends TransferObject, E extends PersistenceEntity<?>> PaginatedListTo<T> mapPaginatedEntityList(
       PaginatedListTo<E> paginatedList, Class<T> klass) {
 

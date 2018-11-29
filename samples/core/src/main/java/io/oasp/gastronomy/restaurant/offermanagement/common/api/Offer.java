@@ -75,5 +75,4 @@ public interface Offer extends MenuItem {
    * @param state is the new {@link #getState() state}.
    */
   void setState(OfferState state);
-
 }

@@ -26,6 +26,10 @@ public class OfferEto extends MenuItemEto implements Offer {
 
   private OfferState state;
 
+  private Money specialPrice;
+
+  private String specialName;
+
   /**
    * The constructor.
    */
@@ -104,5 +108,45 @@ public class OfferEto extends MenuItemEto implements Offer {
   public void setState(OfferState state) {
 
     this.state = state;
+  }
+
+  /**
+   * getter method for Special price (if special offer exists)
+   *
+   * @return the reduced special offer price or null (when none)
+   */
+  public Money getSpecialPrice() {
+
+    return this.specialPrice;
+  }
+
+  /**
+   * getter method for the name of Special offer (if active special offer exists)
+   *
+   * @return the reduced special offer name or null (when none active exists)
+   */
+  public void setSpecialPrice(Money specialPrice) {
+
+    this.specialPrice = specialPrice;
+  }
+
+  /**
+   * setter method for special price value
+   *
+   * @param specialPrice
+   */
+  public String getSpecialName() {
+
+    return this.specialName;
+  }
+
+  /**
+   * setter method for special price name
+   *
+   * @param specialName
+   */
+  public void setSpecialName(String specialName) {
+
+    this.specialName = specialName;
   }
 }

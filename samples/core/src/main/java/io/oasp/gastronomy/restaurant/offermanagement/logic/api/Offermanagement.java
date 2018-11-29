@@ -18,6 +18,7 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialCto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
@@ -227,5 +228,33 @@ public interface Offermanagement {
   void deleteSpecial(Long id);
 
   List<SpecialEto> getSpecials(SpecialSearchCriteriaTo searchCriteria);
+
+  /**
+   * Finds Special offer by id
+   *
+   * @param id special offer ID
+   * @return Special offer ETOor null when none for given ID found
+   */
+  SpecialEto findSpecial(long id);
+
+  /**
+   * @param id
+   * @return Special CTo by ID
+   */
+  SpecialCto findSpecialCto(long id);
+
+  /**
+   * Finds special offers by criteria
+   *
+   * @param searchCriteriaTo search criteria
+   * @return list of special offers by search criteria
+   */
+  PaginatedListTo<SpecialEto> findSpecialEtos(SpecialSearchCriteriaTo searchCriteriaTo);
+
+  /**
+   * @param searchCriteriaTo
+   * @return
+   */
+  PaginatedListTo<SpecialCto> findSpecialCtos(SpecialSearchCriteriaTo searchCriteriaTo);
 
 }

@@ -9,7 +9,6 @@ import java.util.List;
 import javax.inject.Named;
 
 import com.querydsl.core.alias.Alias;
-import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQuery;
 
 import io.oasp.gastronomy.restaurant.general.dataaccess.base.dao.ApplicationMasterDataDaoImpl;
@@ -33,7 +32,7 @@ public class SpecialDaoImplementation extends ApplicationMasterDataDaoImpl<Speci
   @Override
   public List<SpecialEntity> findSpecials(SpecialSearchCriteriaTo criteria) {
 
-    JPQLQuery<SpecialEntity> query = findSecialListQuery(criteria);
+    JPAQuery<SpecialEntity> query = findSecialListQuery(criteria);
 
     return query.fetch();
   }
@@ -41,7 +40,7 @@ public class SpecialDaoImplementation extends ApplicationMasterDataDaoImpl<Speci
   @Override
   public SpecialEntity findBestSpecial(SpecialSearchCriteriaTo criteria) {
 
-    JPQLQuery<SpecialEntity> query = findSecialListQuery(criteria);
+    JPAQuery<SpecialEntity> query = findSecialListQuery(criteria);
     SpecialEntity special = Alias.alias(SpecialEntity.class);
     query.orderBy($(special.getSpecialPrice()).asc());
 
@@ -49,10 +48,10 @@ public class SpecialDaoImplementation extends ApplicationMasterDataDaoImpl<Speci
     return bestSpecial != null ? bestSpecial : null;
   }
 
-  private JPQLQuery<SpecialEntity> findSecialListQuery(SpecialSearchCriteriaTo criteria) {
+  private JPAQuery<SpecialEntity> findSecialListQuery(SpecialSearchCriteriaTo criteria) {
 
     SpecialEntity special = Alias.alias(SpecialEntity.class);
-    JPQLQuery<SpecialEntity> query = new JPAQuery<SpecialEntity>(getEntityManager()).from($(special));
+    JPAQuery<SpecialEntity> query = new JPAQuery<SpecialEntity>(getEntityManager()).from($(special));
 
     String name = criteria.getName();
     Long offerId = criteria.getOfferId();

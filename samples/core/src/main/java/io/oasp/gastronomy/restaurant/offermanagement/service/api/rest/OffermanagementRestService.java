@@ -34,16 +34,16 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialCto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.service.impl.rest.OffermanagementRestServiceImpl;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 
 /**
- *
  * This class contains methods for REST calls. Some URI structures may seem deprecated, but in fact are not. See the
  * correspondent comments on top.
- *
  */
-
 @Path("/offermanagement/v1")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -63,20 +63,16 @@ public interface OffermanagementRestService extends RestService {
    * Delegates to {@link Offermanagement#saveOffer}.
    *
    * @param offer the {@link OfferEto} to save
-   *
    * @return the saved {@link OfferEto}
    */
   @POST
   @Path("/offer/")
   public OfferEto saveOffer(OfferEto offer);
 
-  // although id in path is redundant, this structure is intentionally chosen
-  // for further reasons behind this decision see one of the other ***ManagementRestServiceImpl
   /**
    * Delegates to {@link Offermanagement#saveOffer}.
    *
    * @param offer the {@link OfferEto} to be updated
-   *
    * @return the updated {@link OfferEto}
    */
   @PUT
@@ -180,9 +176,6 @@ public interface OffermanagementRestService extends RestService {
   @Path("/product/{id}")
   ProductEto findProduct(@PathParam("id") long id);
 
-  // although id in path is redundant, this structure is intentionally chosen
-  // for further reasons behind this decision see one of the other
-  // *ManagementRestServiceImpl
   /**
    * Delegates to {@link Offermanagement#saveProduct}.
    *
@@ -243,7 +236,7 @@ public interface OffermanagementRestService extends RestService {
   public void updateProductPicture(@PathParam("id") long productId,
       @Multipart(value = "binaryObjectEto", type = MediaType.APPLICATION_JSON) BinaryObjectEto binaryObjectEto,
       @Multipart(value = "blob", type = MediaType.APPLICATION_OCTET_STREAM) InputStream picture)
-          throws SerialException, SQLException, IOException;
+      throws SerialException, SQLException, IOException;
 
   @SuppressWarnings("javadoc")
   @Produces("multipart/mixed")
@@ -282,4 +275,64 @@ public interface OffermanagementRestService extends RestService {
   @Path("/product/search")
   @POST
   public PaginatedListTo<ProductEto> findProductEtosByPost(ProductSearchCriteriaTo searchCriteriaTo);
+
+  /**
+   * Delegates to {@link Offermanagement#findSpecial}.
+   *
+   * @param id the ID of the {@link SpecialEto}
+   * @return the {@link SpecialEto}
+   */
+  @GET
+  @Path("/special/{id}/")
+  public SpecialEto getSpecial(@PathParam("id") long id);
+
+  /**
+   * Delegates to {@link Offermanagement#saveSpecial}.
+   *
+   * @param special the {@link SpecialEto} to be saved
+   * @return the recently created {@link SpecialEto}
+   */
+  @POST
+  @Path("/special/")
+  public SpecialEto saveSpecial(SpecialEto special);
+
+  /**
+   * Delegates to {@link Offermanagement#deleteSpecial}.
+   *
+   * @param id ID of the {@link SpecialEto} to be deleted
+   */
+  @DELETE
+  @Path("/special/{id}/")
+  public void deleteSpecial(@PathParam("id") long id);
+
+  /**
+   * Delegates to {@link Offermanagement#findSpecialEtos}.
+   *
+   * @param searchCriteriaTo the pagination and search criteria to be used for finding specials.
+   * @return the {@link PaginatedListTo list} of matching {@link SpecialEto}s.
+   */
+  @Path("/special/search")
+  @POST
+  public PaginatedListTo<SpecialEto> findSpecialsByPost(SpecialSearchCriteriaTo searchCriteriaTo);
+
+  /**
+   * Delegates to {@link Offermanagement#findSpecialCto}.
+   *
+   * @param id the ID of the {@link SpecialCto}
+   * @return the {@link SpecialCto}
+   */
+  @GET
+  @Path("/special/cto/{id}/")
+  public SpecialCto getSpecialCto(@PathParam("id") long id);
+
+  /**
+   * Delegates to {@link Offermanagement#findSpecialCtos}.
+   *
+   * @param searchCriteriaTo the pagination and search criteria to be used for finding specials.
+   * @return the {@link PaginatedListTo list} of matching {@link SpecialCto}s.
+   */
+  @Path("/special/cto/search")
+  @POST
+  public PaginatedListTo<SpecialCto> findSpecialCtosByPost(SpecialSearchCriteriaTo searchCriteriaTo);
+
 }

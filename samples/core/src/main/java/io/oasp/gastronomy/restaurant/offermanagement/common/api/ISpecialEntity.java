@@ -1,6 +1,8 @@
-package io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api;
+package io.oasp.gastronomy.restaurant.offermanagement.common.api;
 
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
+import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.WeeklyPeriodEmbeddable;
 
 /**
  * @author JZMUDA

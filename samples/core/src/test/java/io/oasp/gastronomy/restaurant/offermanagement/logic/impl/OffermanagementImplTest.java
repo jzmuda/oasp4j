@@ -3,6 +3,7 @@ package io.oasp.gastronomy.restaurant.offermanagement.logic.impl;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,15 +17,19 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
+import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.OfferEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.OfferDao;
 import io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.dao.SpecialDao;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferCto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.OfferSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.module.beanmapping.common.api.BeanMapper;
+import io.oasp.module.jpa.common.api.to.PaginatedListTo;
+import io.oasp.module.jpa.common.api.to.PaginationResultTo;
 import io.oasp.module.test.common.base.ModuleTest;
 
 /**
@@ -36,6 +41,8 @@ import io.oasp.module.test.common.base.ModuleTest;
 public class OffermanagementImplTest extends ModuleTest {
 
   private static final long ID = 1;
+
+  private static final String SPECIAL_NAME = "My Special";
 
   /**
    * The System Under Test (SUT)
@@ -180,35 +187,42 @@ public class OffermanagementImplTest extends ModuleTest {
 
   }
 
-  // @Test
-  // public void shouldFindOfferWithSpecial() {
-  //
-  // // given
-  // OfferSearchCriteriaTo criteria = new OfferSearchCriteriaTo();
-  // OfferEntity offer = new OfferEntity();
-  // offer.setPrice(new Money(BigDecimal.TEN));
-  // offer.setNumber(1L);
-  // List<OfferEntity> offersWithoutSpecials = Collections.singletonList(offer);
-  // PaginatedListTo<OfferEntity> paginatedOffersWithoutSpecials = new PaginatedListTo<>(offersWithoutSpecials,
-  // new PaginationResultTo());
-  // when(this.offerDao.findOffers(criteria)).thenReturn(paginatedOffersWithoutSpecials);
-  // OfferEto offerEto = new OfferEto();
-  // offerEto.setNumber(1L);
-  // offerEto.setPrice(new Money(BigDecimal.TEN));
-  // when(this.beanMapper.mapList(offersWithoutSpecials, OfferEto.class))
-  // .thenReturn(Collections.singletonList(offerEto));
-  // when(this.specialDao.findBestSpecial(Mockito.argThat(new HasTheSameOfferNumber(1L))))
-  // .thenReturn(new Money(BigDecimal.ONE));
-  //
-  // // when
-  // PaginatedListTo<OfferEto> offers = this.offerManagementImpl.findOfferEtos(criteria);
-  //
-  // // then
-  // assertThat(offers.getResult().size()).isEqualTo(1);
-  // assertThat(offers.getResult().get(0).getPrice()).isEqualTo(new Money(BigDecimal.valueOf(9)));
-  // assertThat(offers.getResult().get(0).get).isEqualTo(new Money(BigDecimal.ONE));
-  //
-  // }
+  @Test
+  public void shouldFindOfferWithSpecial() {
+
+    // given
+    OfferSearchCriteriaTo criteria = new OfferSearchCriteriaTo();
+    OfferEntity offerEntity = new OfferEntity();
+    offerEntity.setPrice(new Money(BigDecimal.TEN));
+    offerEntity.setNumber(1L);
+    List<OfferEntity> offers = Collections.singletonList(offerEntity);
+
+    PaginatedListTo<OfferEntity> paginatedOffers = new PaginatedListTo<>(offers, new PaginationResultTo());
+
+    when(this.offerDao.findOffers(criteria)).thenReturn(paginatedOffers);
+
+    OfferEto offerEto = new OfferEto();
+    offerEto.setNumber(1L);
+    offerEto.setPrice(new Money(BigDecimal.TEN));
+    when(this.beanMapper.mapList(offers, OfferEto.class)).thenReturn(Collections.singletonList(offerEto));
+
+    SpecialEntity special = new SpecialEntity();
+    special.setName(SPECIAL_NAME);
+    special.setSpecialPrice(new Money(BigDecimal.ONE));
+
+    when(this.specialDao.findBestSpecial(Mockito.argThat(new HasTheSameOfferNumber(1L)))).thenReturn(special);
+
+    // when
+    PaginatedListTo<OfferEto> foundOffers = this.offerManagementImpl.findOfferEtos(criteria);
+
+    // then
+    assertThat(foundOffers).isNotNull();
+    assertThat(foundOffers.getResult().size()).isEqualTo(1);
+    assertThat(foundOffers.getResult().get(0).getPrice()).isEqualTo(new Money(BigDecimal.TEN));
+    assertThat(foundOffers.getResult().get(0).getSpecialPrice()).isEqualTo(new Money(BigDecimal.ONE));
+    assertThat(foundOffers.getResult().get(0).getSpecialName()).isEqualTo(SPECIAL_NAME);
+
+  }
 
   private class HasTheSameOfferNumber extends ArgumentMatcher<SpecialSearchCriteriaTo> {
 

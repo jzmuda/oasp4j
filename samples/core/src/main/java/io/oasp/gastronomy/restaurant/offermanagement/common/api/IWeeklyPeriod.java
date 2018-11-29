@@ -1,4 +1,4 @@
-package io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api;
+package io.oasp.gastronomy.restaurant.offermanagement.common.api;
 
 import java.time.DayOfWeek;
 

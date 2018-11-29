@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import io.oasp.gastronomy.restaurant.general.common.api.datatype.Money;
 import io.oasp.gastronomy.restaurant.general.dataaccess.api.ApplicationPersistenceEntity;
+import io.oasp.gastronomy.restaurant.offermanagement.common.api.ISpecialEntity;
+import io.oasp.gastronomy.restaurant.offermanagement.common.api.IWeeklyPeriod;
 
 @Entity
 @Table(name = "Special")

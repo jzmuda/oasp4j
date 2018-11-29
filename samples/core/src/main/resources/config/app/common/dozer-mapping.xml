@@ -35,6 +35,17 @@
     <class-a>io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto</class-a>
     <class-b>io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SideDishEntity</class-b>
   </mapping>
+  <mapping>
+    <class-a>io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto</class-a>
+    <class-b>io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.SpecialEntity</class-b>
+    <field>
+      <a set-method="setActivePeriod">activePeriod</a>
+      <b set-method="setActivePeriod">activePeriod</b>
+      <a-hint>io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.WeeklyPeriodEto</a-hint>
+      <b-hint>io.oasp.gastronomy.restaurant.offermanagement.dataaccess.api.WeeklyPeriodEmbeddable</b-hint>
+    </field>
+  </mapping>
+  
   <!-- END ARCHETYPE SKIP -->
 
   <!-- If a persistence entity is converted to an ETO then the original entity is stored as hidden reference.

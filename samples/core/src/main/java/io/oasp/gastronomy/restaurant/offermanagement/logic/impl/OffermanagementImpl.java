@@ -1,6 +1,7 @@
 package io.oasp.gastronomy.restaurant.offermanagement.logic.impl;
 
 import java.sql.Blob;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -46,9 +47,11 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialCto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
+import io.oasp.module.jpa.common.api.to.PaginationResultTo;
 
 /**
  * Implementation class for {@link Offermanagement}.
@@ -411,7 +414,23 @@ public class OffermanagementImpl extends AbstractComponentFacade implements Offe
 
     criteria.limitMaximumPageSize(MAXIMUM_HIT_LIMIT);
     PaginatedListTo<OfferEntity> offers = getOfferDao().findOffers(criteria);
-    return mapPaginatedEntityList(offers, OfferEto.class);
+    PaginatedListTo<OfferEto> offerEtos = mapPaginatedEntityList(offers, OfferEto.class);
+    for (OfferEto offer : offerEtos.getResult()) {
+      SpecialEntity special = findBestSpecialForOfferNow(offer.getNumber());
+      if (special != null) {
+        offer.setSpecialPrice(special.getSpecialPrice());
+        offer.setSpecialName(special.getName());
+      }
+    }
+    return offerEtos;
+  }
+
+  private SpecialEntity findBestSpecialForOfferNow(Long offerId) {
+
+    SpecialSearchCriteriaTo criteria = new SpecialSearchCriteriaTo();
+    criteria.setOfferId(offerId);
+    criteria.setDate(LocalDateTime.now());
+    return this.specialDao.findBestSpecial(criteria);
   }
 
   @Override
@@ -514,6 +533,14 @@ public class OffermanagementImpl extends AbstractComponentFacade implements Offe
     this.specialDao = specialDao;
   }
 
+  /**
+   * @return {@link SpecialDao} instance.
+   */
+  public SpecialDao getSpecialDao() {
+
+    return this.specialDao;
+  }
+
   @Override
   public SpecialEto saveSpecial(SpecialEto specialEto) {
 
@@ -532,6 +559,59 @@ public class OffermanagementImpl extends AbstractComponentFacade implements Offe
   public List<SpecialEto> getSpecials(SpecialSearchCriteriaTo searchCriteria) {
 
     return getBeanMapper().mapList(this.specialDao.findSpecials(searchCriteria), SpecialEto.class);
+  }
+
+  @Override
+  public SpecialEto findSpecial(long id) {
+
+    LOG.debug("Get SpecialEto with id '{}' from database.", id);
+    return getBeanMapper().map(getSpecialDao().findOne(id), SpecialEto.class);
+  }
+
+  @Override
+  public SpecialCto findSpecialCto(long id) {
+
+    LOG.debug("Get SpecialCTO with id '{}' from database.", id);
+    SpecialEto specialEto = findSpecial(id);
+
+    SpecialCto result = new SpecialCto();
+    // Special Eto
+    if (specialEto == null) {
+      return null;
+    }
+    result.setSpecial(specialEto);
+
+    // offer
+    OfferEto offerEto = findOffer(specialEto.getOffer().getId());
+    if (offerEto == null) {
+      return null;
+    }
+    result.setOffer(offerEto);
+
+    return result;
+
+  }
+
+  @Override
+  @RolesAllowed(PermissionConstants.FIND_OFFER)
+  public PaginatedListTo<SpecialEto> findSpecialEtos(SpecialSearchCriteriaTo criteria) {
+
+    criteria.limitMaximumPageSize(MAXIMUM_HIT_LIMIT);
+    List<SpecialEntity> specials = getSpecialDao().findSpecials(criteria);
+    PaginatedListTo<SpecialEntity> paginatedSpecials =
+        new PaginatedListTo<>(specials, new PaginationResultTo(criteria.getPagination(), (long) specials.size()));
+    return mapPaginatedEntityList(paginatedSpecials, SpecialEto.class);
+  }
+
+  @Override
+  @RolesAllowed(PermissionConstants.FIND_OFFER)
+  public PaginatedListTo<SpecialCto> findSpecialCtos(SpecialSearchCriteriaTo criteria) {
+
+    criteria.limitMaximumPageSize(MAXIMUM_HIT_LIMIT);
+    List<SpecialEntity> specials = getSpecialDao().findSpecials(criteria);
+    PaginatedListTo<SpecialEntity> paginatedSpecials =
+        new PaginatedListTo<>(specials, new PaginationResultTo(criteria.getPagination(), (long) specials.size()));
+    return mapPaginatedEntityList(paginatedSpecials, SpecialCto.class);
   }
 
 }

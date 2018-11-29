@@ -32,6 +32,9 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialCto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.service.api.rest.OffermanagementRestService;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 
@@ -221,6 +224,42 @@ public class OffermanagementRestServiceImpl implements OffermanagementRestServic
   public PaginatedListTo<ProductEto> findProductEtosByPost(ProductSearchCriteriaTo searchCriteriaTo) {
 
     return this.offermanagement.findProductEtos(searchCriteriaTo);
+  }
+
+  @Override
+  public SpecialEto getSpecial(long id) {
+
+    return this.offermanagement.findSpecial(id);
+  }
+
+  @Override
+  public SpecialEto saveSpecial(SpecialEto special) {
+
+    return this.offermanagement.saveSpecial(special);
+  }
+
+  @Override
+  public void deleteSpecial(long id) {
+
+    this.offermanagement.deleteSpecial(id);
+  }
+
+  @Override
+  public PaginatedListTo<SpecialEto> findSpecialsByPost(SpecialSearchCriteriaTo searchCriteriaTo) {
+
+    return this.offermanagement.findSpecialEtos(searchCriteriaTo);
+  }
+
+  @Override
+  public SpecialCto getSpecialCto(long id) {
+
+    return this.offermanagement.findSpecialCto(id);
+  }
+
+  @Override
+  public PaginatedListTo<SpecialCto> findSpecialCtosByPost(SpecialSearchCriteriaTo searchCriteriaTo) {
+
+    return this.offermanagement.findSpecialCtos(searchCriteriaTo);
   }
 
 }
